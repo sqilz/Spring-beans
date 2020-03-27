@@ -3,18 +3,18 @@ package com.example.demo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 
 @Configuration
 public class JavaConfig {
 
     @Bean
-    @Scope("singleton")
     public SingletonBean singletonBean() {
         return new SingletonBean();
     }
 
     @Bean
-    @Scope("prototype")
+    @Scope(value = "prototype")
     public PrototypeBean prototypeBean() {
         return new PrototypeBean();
     }

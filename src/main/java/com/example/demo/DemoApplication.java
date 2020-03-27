@@ -23,13 +23,23 @@ public class DemoApplication {
 	@RestController
 	@ComponentScan("com.example.demo")
 	class Test {
+
+
+		private SingletonBean thing;
+
 		@Autowired
-		private Provider<PrototypeBean> thing;
+		public Test(SingletonBean thing) {
+			this.thing = thing;
+		}
 
 
 		@GetMapping("/greeting")
 		public String greeting() {
-			return "greeting";
+
+			thing.sendMsg();
+			PrototypeBean bean = thing.getBean();
+
+			return thing.toString() + "\n" + bean.toString();
 		}
 
 	}
